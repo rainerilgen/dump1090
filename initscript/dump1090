@@ -1,0 +1,43 @@
+#!/bin/sh /etc/rc.common
+### BEGIN INIT INFO
+#
+# Provides:		dump1090
+# Short-Description:	dump1090 initscript
+
+#
+### END INIT INFO
+## Fill in name of program here.
+START=99
+
+PROG="dump1090"
+PROG_PATH="/usr/share/dump1090"
+PROG_ARGS="--quiet --net-http-only --aggressive"
+PIDFILE="/var/run/dump1090.pid"
+
+start() {
+      if [ -e $PIDFILE ]; then
+          ## Program is running, exit with error.
+          echo "Error! $PROG is currently running!" 1>&2
+          exit 1
+      else
+          ## Change from /dev/null to something like /var/log/$PROG if you want to save output.
+          cd $PROG_PATH
+          $PROG $PROG_ARGS 2>&1 >/dev/null &
+          echo "$PROG started"
+          touch $PIDFILE
+      fi
+}
+
+stop() {
+      if [ -e $PIDFILE ]; then
+          ## Program is running, so stop it
+         echo "$PROG is running"
+         killall $PROG
+         rm -f $PIDFILE
+         echo "$PROG stopped"
+      else
+          ## Program is not running, exit with error.
+          echo "Error! $PROG not started!" 1>&2
+          exit 1
+      fi
+}
