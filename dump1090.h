@@ -208,6 +208,7 @@ struct aircraft {
     uint64_t      timestamp;      // Timestamp at which the last packet was received
     uint64_t      timestampLatLon;// Timestamp at which the last lat long was calculated
     long          messages;       // Number of Mode S messages received
+    int		  fs;
     int           modeA;          // Squawk
     int           modeC;          // Altitude
     long          modeAcount;     // Mode A Squawk hit Count
@@ -283,6 +284,7 @@ struct {                             // Internal state
     int   mode_ac;                   // Enable decoding of SSR Modes A & C
     int   debug;                     // Debugging mode
     int   net;                       // Enable networking
+    int   net_http_only;             // Enable just http server
     int   net_only;                  // Enable just networking
     int   net_heartbeat_count;       // TCP heartbeat counter
     int   net_heartbeat_rate;        // TCP heartbeat rate
