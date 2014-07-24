@@ -20,7 +20,7 @@ scripts/feeds install socat
 mkdir ./package/dump1090
 cd package/dump1090
 rm Makefile
-https://raw.githubusercontent.com/rainerilgen/dump1090/master/openwrt/Makefile
+wget https://raw.githubusercontent.com/rainerilgen/dump1090/master/openwrt/Makefile
 cd ..
 cd ..
 mkdir ./package/rtl-sdr
