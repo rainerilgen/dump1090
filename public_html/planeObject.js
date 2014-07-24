@@ -14,6 +14,7 @@ var planeObject = {
 	flight		: null,
 	squawk		: null,
 	icao		: null,
+	fs		: null,
 	is_selected	: false,	
 
 	// Data packet numbers
@@ -140,6 +141,7 @@ var planeObject = {
 			this.flight	= data.flight;
 			this.squawk	= data.squawk;
 			this.icao	= data.hex;
+			this.fs		= data.fs;
 			this.messages	= data.messages;
 			this.seen	= data.seen;
 
