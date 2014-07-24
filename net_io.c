@@ -56,17 +56,29 @@ struct service {
 struct service services[MODES_NET_SERVICES_NUM];
 
 void modesInitNet(void) {
-    int j;
+    int i;
 
-	struct service svc[MODES_NET_SERVICES_NUM] = {
-		{"Raw TCP output", &Modes.ros, Modes.net_output_raw_port, 1},
-		{"Raw TCP input", &Modes.ris, Modes.net_input_raw_port, 1},
-		{"Beast TCP output", &Modes.bos, Modes.net_output_beast_port, 1},
-		{"Beast TCP input", &Modes.bis, Modes.net_input_beast_port, 1},
-		{"HTTP server", &Modes.https, Modes.net_http_port, 1},
-		{"Basestation TCP output", &Modes.sbsos, Modes.net_output_sbs_port, 1}
-	};
-
+	if(Modes.html_only)
+	{
+		struct service svc[MODES_NET_SERVICES_NUM] = {
+			{"Raw TCP output", &Modes.ros, 0, 0},
+			{"Raw TCP input", &Modes.ris, 0, 0},
+			{"Beast TCP output", &Modes.bos, 0, 0},
+			{"Beast TCP input", &Modes.bis, 0, 0},
+			{"HTTP server", &Modes.https, Modes.net_http_port, 1},
+			{"Basestation TCP output", &Modes.sbsos, 0, 0}
+		};
+	} else {
+		struct service svc[MODES_NET_SERVICES_NUM] = {
+			{"Raw TCP output", &Modes.ros, Modes.net_output_raw_port, 1},
+			{"Raw TCP input", &Modes.ris, Modes.net_input_raw_port, 1},
+			{"Beast TCP output", &Modes.bos, Modes.net_output_beast_port, 1},
+			{"Beast TCP input", &Modes.bis, Modes.net_input_beast_port, 1},
+			{"HTTP server", &Modes.https, Modes.net_http_port, 1},
+			{"Basestation TCP output", &Modes.sbsos, Modes.net_output_sbs_port, 1}
+		};
+	}
+	
 	memcpy(&services, &svc, sizeof(svc));//services = svc;
 
     Modes.clients = NULL;
@@ -631,9 +643,9 @@ char *aircraftsToJson(int *len) {
         l = snprintf(p,buflen,
             "{\"hex\":\"%06x\", \"squawk\":\"%04x\", \"flight\":\"%s\", \"lat\":%f, "
             "\"lon\":%f, \"validposition\":%d, \"altitude\":%d,  \"vert_rate\":%d,\"track\":%d, \"validtrack\":%d,"
-            "\"speed\":%d, \"messages\":%ld, \"seen\":%d},\n",
+            "\"speed\":%d, \"messages\":%ld, \"seen\":%d, \"fs\":\"%s\"},\n",
             a->addr, a->modeA, a->flight, a->lat, a->lon, position, a->altitude, a->vert_rate, a->track, track,
-            a->speed, a->messages, (int)(now - a->seen));
+            a->speed, a->messages, (int)(now - a->seen), fs_str[a->fs]);
         p += l; buflen -= l;
         
         //Resize if needed
