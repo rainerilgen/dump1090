@@ -56,6 +56,7 @@ struct aircraft *interactiveCreateAircraft(struct modesMessage *mm) {
     // Now initialise things that should not be 0/NULL to their defaults
     a->addr = mm->addr;
     a->lat  = a->lon = 0.0;
+    a->fs = mm->fs;
     memset(a->signalLevel, mm->signalLevel, 8); // First time, initialise everything
                                                 // to the first signal strength
 
@@ -313,6 +314,8 @@ struct aircraft *interactiveReceiveData(struct modesMessage *mm) {
             a->messages    = 1;
         }  
     }
+
+    a->fs = mm->fs;
 
     return (a);
 }
