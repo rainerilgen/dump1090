@@ -313,7 +313,7 @@ function refreshSelected() {
 	html += '<tr><td colspan="' + columns + '" align="center">Lat/Long: ';
 	if (selected && selected.vPosition) {
 	    html += selected.latitude + ', ' + selected.longitude + '</td></tr>';
-	    
+
 	    // Let's show some extra data if we have site coordinates
 	    if (SiteShow) {
             var siteLatLon  = new google.maps.LatLng(SiteLat, SiteLon);
@@ -337,6 +337,14 @@ function refreshSelected() {
     	    html += 'n/a</td></tr>';
     	}
 	}
+
+	html += '<tr><td>Flight Status: ' 
+	if (selected && selected.fs) {
+		html += selected.fs;
+	} else {
+		html += 'n/a';
+	}
+	html += '</td><td>&nbsp;</td></tr>';
 
 	html += '</table>';
 	
