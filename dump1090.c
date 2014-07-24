@@ -406,6 +406,7 @@ void showHelp(void) {
 "--net                    Enable networking\n"
 "--modeac                 Enable decoding of SSR Modes 3/A & 3/C\n"
 "--net-beast              TCP raw output in Beast binary format\n"
+"--net-http-only          Enable just http server output\n"
 "--net-only               Enable just networking, no RTL device or file used\n"
 "--net-http-port <port>   HTTP server port (default: 8080)\n"
 "--net-ri-port <port>     TCP raw input listen port  (default: 30001)\n"
@@ -602,6 +603,9 @@ int main(int argc, char **argv) {
             Modes.mode_ac = 1;
         } else if (!strcmp(argv[j],"--net-beast")) {
             Modes.beast = 1;
+        } else if (!strcmp(argv[j],"--net-http-only")) {
+	    Modes.net = 1;
+            Modes.html_only = 1;
         } else if (!strcmp(argv[j],"--net-only")) {
             Modes.net = 1;
             Modes.net_only = 1;
