@@ -55,6 +55,18 @@ struct service {
 
 struct service services[MODES_NET_SERVICES_NUM];
 
+// Flight status table
+char *fs_str[8] = {
+    /* 0 */ "Normal, Airborne",
+    /* 1 */ "Normal, On the ground",
+    /* 2 */ "ALERT, Airborne",
+    /* 3 */ "ALERT, On the ground",
+    /* 4 */ "ALERT & Special Position Identification. Airborne or Ground",
+    /* 5 */ "Special Position Identification. Airborne or Ground",
+    /* 6 */ "Value 6 is not assigned",
+    /* 7 */ "Value 7 is not assigned"
+};
+
 void modesInitNet(void) {
     int i;
 
