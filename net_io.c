@@ -68,7 +68,7 @@ char *fs_str[8] = {
 };
 
 void modesInitNet(void) {
-    int i;
+    int j;
 
 	if(Modes.net_http_only)
 	{
