@@ -80,6 +80,7 @@ void modesInitNet(void) {
 			{"HTTP server", &Modes.https, Modes.net_http_port, 1},
 			{"Basestation TCP output", &Modes.sbsos, 0, 0}
 		};
+		memcpy(&services, &svc, sizeof(svc));//services = svc;
 	} else {
 		struct service svc[MODES_NET_SERVICES_NUM] = {
 			{"Raw TCP output", &Modes.ros, Modes.net_output_raw_port, 1},
@@ -89,9 +90,8 @@ void modesInitNet(void) {
 			{"HTTP server", &Modes.https, Modes.net_http_port, 1},
 			{"Basestation TCP output", &Modes.sbsos, Modes.net_output_sbs_port, 1}
 		};
+		memcpy(&services, &svc, sizeof(svc));//services = svc;
 	}
-	
-	memcpy(&services, &svc, sizeof(svc));//services = svc;
 
     Modes.clients = NULL;
 
