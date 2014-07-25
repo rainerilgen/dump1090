@@ -56,7 +56,7 @@ struct service {
 struct service services[MODES_NET_SERVICES_NUM];
 
 // Flight status table
-char *fs_str[8] = {
+char *fs_str2[8] = {
     /* 0 */ "Normal, Airborne",
     /* 1 */ "Normal, On the ground",
     /* 2 */ "ALERT, Airborne",
@@ -657,7 +657,7 @@ char *aircraftsToJson(int *len) {
             "\"lon\":%f, \"validposition\":%d, \"altitude\":%d,  \"vert_rate\":%d,\"track\":%d, \"validtrack\":%d,"
             "\"speed\":%d, \"messages\":%ld, \"seen\":%d, \"fs\":\"%s\"},\n",
             a->addr, a->modeA, a->flight, a->lat, a->lon, position, a->altitude, a->vert_rate, a->track, track,
-            a->speed, a->messages, (int)(now - a->seen), fs_str[a->fs]);
+            a->speed, a->messages, (int)(now - a->seen), fs_str2[a->fs]);
         p += l; buflen -= l;
         
         //Resize if needed
