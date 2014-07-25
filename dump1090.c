@@ -605,7 +605,7 @@ int main(int argc, char **argv) {
             Modes.beast = 1;
         } else if (!strcmp(argv[j],"--net-http-only")) {
 	    Modes.net = 1;
-            Modes.html_only = 1;
+            Modes.net_html_only = 1;
         } else if (!strcmp(argv[j],"--net-only")) {
             Modes.net = 1;
             Modes.net_only = 1;
