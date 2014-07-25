@@ -70,7 +70,7 @@ char *fs_str[8] = {
 void modesInitNet(void) {
     int i;
 
-	if(Modes.html_only)
+	if(Modes.net_http_only)
 	{
 		struct service svc[MODES_NET_SERVICES_NUM] = {
 			{"Raw TCP output", &Modes.ros, 0, 0},
